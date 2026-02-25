@@ -1,5 +1,5 @@
 # Neural-Networks
-## **Implementation of Python program with SMV and  CNN+MLP for CIFAR − 10 classification (with backprop)**
+### **Implementation of Python program with SMV and  CNN+MLP for CIFAR − 10 classification (with backprop)**
 ## **1. Python program with CNN +MLP for CIFAR − 10 classification (with backprop)**
 * Loads the CIFAR − 10 from the pickled files we have. [https://www.cs.toronto.edu/~kriz/cifar.html] (You can find the CIFAR-10 files here and the code to "unpickle" them)
 * Defines a convolutional network (CNN) that is finally connected to a fully connected layer (MLP). The size of the hidden layer of the MLP is parametric, so we can compare performance for different numbers of neurons.
