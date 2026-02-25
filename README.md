@@ -68,6 +68,7 @@ python cif ar10 svm and experiments.py –data dir ./cif ar-10-batchespy –pca 
 5. MLP with hinge: if PyTorch exists, we train an MLP (with a hidden layer).
 
 <ins>Examples:</ins>
+
 Simple execution example:
 ```
 $ python cifar10 svm experiments.py –data dir ./cifar-10-batchespy –pca 0.90 –subsample 0.2 –output dir ./cifar results
