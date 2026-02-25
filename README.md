@@ -11,9 +11,15 @@ Implementation of Python program with SMV and  CNN+MLP for CIFAR − 10 classifi
 
 ## **Instructions**
 * Install dependencies (recommended environment Python 3.8+):
+```
 $ pip install torch torchvision numpy scikit-learn matplotlib tqdm pillow
+```
 * Import CIFAR files (the pickled ones) into a folder:
+```
 data/cif ar-10-batches-py/.
+```
 * We run the code:
+```
 python cif ar cnn mlp.py –data dir data/cif ar-10-batches-py –epochs 30
+```
 * The results (plots, CSV with experiments, images of incorrect/correct classifications) will be saved in the folder results/.
