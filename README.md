@@ -1,6 +1,6 @@
 # Neural-Networks
 ## **Implementation of Python program with SMV and  CNN+MLP for CIFAR − 10 classification (with backprop)**
-### **1.Python program with CNN +MLP for CIFAR − 10 classification (with backprop)**
+## **1. Python program with CNN +MLP for CIFAR − 10 classification (with backprop)**
 * Loads the CIFAR − 10 from the pickled files we have. [https://www.cs.toronto.edu/~kriz/cifar.html] (You can find the CIFAR-10 files here and the code to "unpickle" them)
 * Defines a convolutional network (CNN) that is finally connected to a fully connected layer (MLP). The size of the hidden layer of the MLP is parametric, so we can compare performance for different numbers of neurons.
 * Trains with back−prop, records training/testaccuracy at each epoch, and measures training time.
@@ -37,7 +37,7 @@ $ python cif ar cnn mlp.py –data dir data/cif ar-10-batches−py –results di
 ```
 This will run three experiments (mlp hidden = 128, 256, 512). It will save accuracy plots, images of misclassifications, and summary_results.csv in the results folder . At the end, the kNN/Nearest Centroid results (with PCA 100) will also be printed.
 
-### **2.Python program with SMV for CIFAR − 10 classification**
+## **2. Python program with SMV for CIFAR − 10 classification**
 * Loads CIFAR − 10 from the ”pickled” files we have. [https://www.cs.toronto.edu/~kriz/cifar.html] (You can find the CIFAR-10 files here and the code to "unpickle" them)
 * Optional PCA to retain > 90% of the information
 * Trains SVM (selection for different kernels), gives time measurement and performance estimate (train/test)
