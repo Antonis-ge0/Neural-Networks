@@ -69,7 +69,7 @@ python cif ar10 svm and experiments.py –data dir ./cif ar-10-batchespy –pca 
 
 <ins>Examples:</ins>
 
-Simple execution example:
+Simple example:
 ```
 $ python cifar10 svm experiments.py –data dir ./cifar-10-batchespy –pca 0.90 –subsample 0.2 –output dir ./cifar results
 ```
@@ -81,3 +81,4 @@ Example for two classes:
 ```
 $ python cifar10 svm experiments.py –data dir ./cifar-10-batchespy –binary 1,3 –pca 0.90 –output dir ./cifar results
 ```
+When the code runs it will create a confusion matrix and save it as an image also it will save samples of correct/incorrect classifications and it will create a JSON file with a summary of the results all in the cifar_results folder . At the end useful information will also be printed.
