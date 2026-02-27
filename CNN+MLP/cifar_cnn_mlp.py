@@ -154,7 +154,6 @@ def eval_model(model, dataloader, criterion, device, save_examples=False, out_di
                         misclassified.append( (img, int(preds[i].cpu().item()), int(targets[i].cpu().item())) )
     avg_loss = running_loss / total
     acc = correct / total
-    # Save example images if ζητήθηκε
     if save_examples and len(misclassified) > 0:
         ex_dir = os.path.join(out_dir, 'misclassified')
         os.makedirs(ex_dir, exist_ok=True)
@@ -307,4 +306,5 @@ if __name__ == '__main__':
 
     run_experiment(args.data_dir, args.results_dir, device,
                    epochs=args.epochs, batch_size=args.batch_size, lr=args.lr,
+
                    mlp_hidden_list=args.mlp_hidden, dropout=args.dropout)
