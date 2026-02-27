@@ -187,7 +187,7 @@ def main(args):
     X_train, y_train, X_test, y_test, label_names = load_cifar10(args.data_dir)
     print('Loaded CIFAR-10: ', X_train.shape, y_train.shape, X_test.shape, y_test.shape)
 
-    # --- Επιλογή binary προβλήματος (προαιρετικό) ---
+    # Επιλογή binary προβλήματος (προαιρετικό)
     if args.binary is not None:
         # Δύο περιπτώσεις: one-vs-rest (π.χ. "3") ή two-class ("2,5")
         if ',' in args.binary:
@@ -209,12 +209,12 @@ def main(args):
             y_test = (y_test==c).astype(int)
             print(f"Binary one-vs-rest problem: class {c} ('{label_names[c]}') vs rest")
 
-    # --- Standardization ---
+    # Standardization
     scaler = StandardScaler()
     X_train_scaled = scaler.fit_transform(X_train)
     X_test_scaled = scaler.transform(X_test)
 
-    # --- PCA (προαιρετικό) ---
+    # PCA (προαιρετικό)
     pca = None
     if args.pca is not None and args.pca>0 and args.pca<1.0:
         t0 = time.time()
@@ -226,7 +226,7 @@ def main(args):
         X_train_p = X_train_scaled
         X_test_p = X_test_scaled
 
-    # --- Υποδειγματοληψία για γρήγορο grid search ---
+    # Υποδειγματοληψία για γρήγορο grid search
     if args.subsample is not None and args.subsample>0 and args.subsample < 1.0:
         rng = np.random.RandomState(args.random_seed)
         sel_tr = rng.choice(len(X_train_p), size=int(len(X_train_p)*args.subsample), replace=False)
@@ -239,7 +239,7 @@ def main(args):
 
     results = {}
 
-    # --- Linear SVM ---
+    # Linear SVM
     print('\n=== Linear SVM (LinearSVC) grid search ===')
     param_grid = {'C':[0.01, 0.1, 1.0, 10.0]}
     svc_lin = LinearSVC(max_iter=20000)
@@ -257,7 +257,7 @@ def main(args):
         'model':best_lin
     }
 
-    # --- RBF SVM ---
+    # RBF SVM
     print('\n=== RBF SVM grid search (may be slow) ===')
     param_grid_rbf = {'C':[0.1,1,10],'gamma':['scale','auto']}
     svc_rbf = SVC(kernel='rbf')
@@ -275,7 +275,7 @@ def main(args):
         'model':best_rbf
     }
 
-    # --- k-NN ---
+    # k-NN
     print('\n=== k-NN (k=1 and k=3) ===')
     for k in [1,3]:
         t0 = time.time()
@@ -286,7 +286,7 @@ def main(args):
         acc = accuracy_score(y_test, y_pred)
         results[f'knn_{k}'] = {'test_acc':acc,'time':time_fit,'model':knn}
 
-    # --- Nearest Centroid ---
+    # Nearest Centroid
     print('\n=== Nearest Class Centroid ===')
     nc = NearestCentroid()
     t0 = time.time()
@@ -296,7 +296,7 @@ def main(args):
     acc_nc = accuracy_score(y_test, y_pred)
     results['nearest_centroid'] = {'test_acc':acc_nc,'time':t_nc,'model':nc}
 
-    # --- MLP με hinge loss ---
+    # MLP με hinge loss
     print('\n=== MLP (1 hidden layer) with multiclass hinge loss (if PyTorch available) ===')
     mlp_model = None
     if TORCH_AVAILABLE:
@@ -319,7 +319,7 @@ def main(args):
             acc_mlp = accuracy_score(y_test, y_pred)
             results['mlp_hinge'] = {'test_acc':acc_mlp,'time':t_mlp,'model':mlp_model,'history':mlp_history}
 
-    # --- Επιλογή καλύτερου μοντέλου ---
+    # Επιλογή καλύτερου μοντέλου
     best_key = max([k for k in results.keys()], key=lambda k: results[k].get('test_acc',0.0))
     best_model = results[best_key]['model']
     print(f"\nBest model by test accuracy: {best_key}  test_acc={results[best_key].get('test_acc',0.0):.4f}")
@@ -387,3 +387,4 @@ if __name__=='__main__':
 
     args = parser.parse_args()
     main(args)
+
